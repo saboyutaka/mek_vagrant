@@ -73,4 +73,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   cf.policy_server_address = "10.0.2.15"
   # end
 
+  config.vm.provision "shell", path: "bootstrap.sh"
 end
