@@ -23,3 +23,20 @@ _EOT_
   chkconfig mongod on
 fi
 
+if [ ! -e /etc/init.d/elasticsearch ] ; then
+  yum install -y java-1.7.0-openjdk
+  wget -q https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.noarch.rpm
+  rpm -i elasticsearch-1.4.2.noarch.rpm
+  rm -f elasticsearch-1.4.2.noarch.rpm
+  /usr/share/elasticsearch/bin/plugin -s -i elasticsearch/marvel/latest
+
+  service elasticsearch start
+  chkconfig elasticsearch on
+fi
+
+
+if [ -e /etc/localtime ] ; then
+  echo "Asia/Tokyo" > /etc/timezone
+  rm -f /etc/localtime
+  ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+fi
