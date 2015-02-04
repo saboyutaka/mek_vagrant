@@ -31,9 +31,14 @@ if [ ! -e /etc/init.d/elasticsearch ] ; then
   rpm -i elasticsearch-1.4.2.noarch.rpm
   rm -f elasticsearch-1.4.2.noarch.rpm
   /usr/share/elasticsearch/bin/plugin -s -i elasticsearch/marvel/latest
+  /usr/share/elasticsearch/bin/plugin -s -i elasticsearch/elasticsearch-mapper-attachments/2.4.1
+  /usr/share/elasticsearch/bin/plugin -s -i com.github.richardwilly98.elasticsearch/elasticsearch-river-mongodb/2.0.5
+  /usr/share/elasticsearch/bin/plugin -s -i mobz/elasticsearch-head
 
   service elasticsearch start
   chkconfig elasticsearch on
+
+  curl -XPUT 'http://localhost:9200/_river/mongodb/_meta' -d '{"type": "mongodb", "mongodb": {"db": "airbnb", "collection": "listings"}, "index": {"name": "airbnb", "type": "listings"} }'
 fi
 
 if [ ! -e /etc/init.d/kibana ] ; then
