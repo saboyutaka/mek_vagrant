@@ -36,6 +36,15 @@ if [ ! -e /etc/init.d/elasticsearch ] ; then
   chkconfig elasticsearch on
 fi
 
+if [ ! -e /etc/init.d/kibana ] ; then
+  curl -sL https://download.elasticsearch.org/kibana/kibana/kibana-4.0.0-beta3.tar.gz | sudo tar zx
+  mv kibana-4.0.0-beta3 /opt
+  cp /vagrant/kibana.sh /etc/init.d/kibana
+  chmod +x /etc/init.d/kibana
+
+  service kibana start
+  chkconfig kibana on
+fi
 
 if [ -e /etc/localtime ] ; then
   echo "Asia/Tokyo" > /etc/timezone
