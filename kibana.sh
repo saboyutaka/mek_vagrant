@@ -12,10 +12,12 @@
 
 export NAME=kibana
 export TMP=/tmp/kibana
+export LOG_DIR=/var/log/kibana
 export PID=${TMP}/${NAME}.pid
-export LOG=${TMP}/${NAME}.log
+export LOG=${LOG_DIR}/${NAME}.log
 
 test -d $TMP || mkdir $TMP
+test -d $LOG_DIR || mkdir $LOG_DIR
 
 case $1 in
   'start' )
