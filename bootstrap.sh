@@ -38,7 +38,8 @@ if [ ! -e /etc/init.d/elasticsearch ] ; then
   service elasticsearch start
   chkconfig elasticsearch on
 
-  curl -XPUT 'http://localhost:9200/_river/mongodb/_meta' -d '{"type": "mongodb", "mongodb": {"db": "airbnb", "collection": "listings"}, "index": {"name": "airbnb", "type": "listings"} }'
+  # curl -XPUT 'http://localhost:9200/_river/mongodb/_meta' -d '{"type": "mongodb", "mongodb": {"db": "airbnb", "collection": "listings"}, "index": {"name": "airbnb", "type": "listings"} }'
+  # curl -XPUT 'http://localhost:9200/_template/airbnb_location' -d '{"template": "airbnb", "mappings": {"listings": {"properties": {"location": {"type": "geo_point", "lat_lon": true} } } } }'
 fi
 
 if [ ! -e /etc/init.d/kibana ] ; then
