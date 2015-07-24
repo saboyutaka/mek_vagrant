@@ -1,0 +1,25 @@
+{
+  "template": "airbnb",
+  "mappings": {
+    "listings": {
+      "properties": {
+        "bed_type": {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "room_type": {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "host_first_name": {
+          "type" : "string",
+          "index" : "not_analyzed"
+        },
+        "location": {
+          "type": "geo_point",
+          "lat_lon": true
+        }
+      }
+    }
+  }
+}

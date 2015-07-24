@@ -22,7 +22,7 @@ test -d $LOG_DIR || mkdir $LOG_DIR
 case $1 in
   'start' )
     $0 status >/dev/null 2>&1 && echo "${NAME} is already running." && exit 1
-    nohup /opt/kibana-4.0.0-beta3/bin/kibana 0<&- &> $LOG &
+    nohup /opt/kibana-4.0.0-linux-x64/bin/kibana 0<&- &> $LOG &
     echo $! > $PID
     ;;
   'stop' )
